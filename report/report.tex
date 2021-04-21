@@ -16,7 +16,7 @@
 \usepackage[lined,boxed,commentsnumbered]{algorithm2e}
 \usepackage{enumerate}
 \usepackage{color}
-\usepackage{graphicx}							
+\usepackage{graphicx}                           
 % Standard graphics package
 \usepackage{listings}
 \lstset{frame=tb,
@@ -52,7 +52,7 @@
 \usepackage[unicode]{hyperref}
 %can file puenc.def trong thu muc goc de option [unicode] tao ra bookmark bang tieng Viet
 \hypersetup{urlcolor=blue,linkcolor=black,citecolor=black,colorlinks=true} 
-%\usepackage{pstcol} 								
+%\usepackage{pstcol}                                
 % PSTricks with the standard color package
 
 \newtheorem{theorem}{{\bf Theorem}}
@@ -72,18 +72,18 @@
     \put(0,-8){\includegraphics[width=8mm, height=8mm]{hcmut.png}}
     %\put(0,-8){\epsfig{width=10mm,figure=hcmut.eps}}
    \end{picture}&
-	%\includegraphics[width=8mm, height=8mm]{hcmut.png} & %
-	\begin{tabular}{l}
-		\textbf{\bf \ttfamily Trường Đại học Bách Khoa - Đại học Quốc gia TP.HCM}\\
-		\textbf{\bf \ttfamily Bộ môn Điều khiển \& Tự động}
-	\end{tabular} 	
+    %\includegraphics[width=8mm, height=8mm]{hcmut.png} & %
+    \begin{tabular}{l}
+        \textbf{\bf \ttfamily Trường Đại học Bách Khoa - Đại học Quốc gia TP.HCM}\\
+        \textbf{\bf \ttfamily Bộ môn Điều khiển \& Tự động}
+    \end{tabular}   
  \end{tabular}
 }
 \fancyhead[R]{
-	\begin{tabular}{l}
-		\tiny \bf \\
-		\tiny \bf 
-	\end{tabular}  }
+    \begin{tabular}{l}
+        \tiny \bf \\
+        \tiny \bf 
+    \end{tabular}  }
 \fancyfoot{} % clear all footer fields
 \fancyfoot[L]{\scriptsize \ttfamily Bài tập - Mạng Nơ-ron Tích chập \& Hồi tiếp, 04/2021}
 \fancyfoot[R]{\scriptsize \ttfamily {\thepage}/\pageref{LastPage}}
@@ -608,7 +608,7 @@ Epoch : 30, trn_loss: 2.2585, trn_acc: 16.2500%, val_loss : 2.2462, val_acc: 25.
 \caption*{Loss và Accuracy của hai quá trình training và validation}
 \end{figure}
 Kết quả có vẻ không như ta mong muốn, khi loss cao và không có dấu hiệu giảm, accuracy thì lại quá thấp ($< 50\%$) và cũng không có dấu hiệu tăng. Có lẽ ta không cần phải đem mô hình này đi thử nghiệm vì không lí nào mô hình lại có thể có thể dự đoán tốt với kết quả như thế này.\\
-Sẽ ra sao nếu ta giữ lại những tầng trước đó của mô hình, và chỉ huấn luyện tầng mà ta thay đổi? Nếu ta muốn giữ lại các thông số của mô hình cũ, ta cần phải \textbf{freeze} tất các lớp, sau đó thay thế những lớp ta muốn huấn luyện bằng một lớp mới. Cụ thể, nếu ta muốn giữ lại tất cả các lớp trước trừ lớp cuối cùng, thì bước khởi tạo mô hình trước khi huấn luyện cần phải làm như sau:
+Sẽ ra sao nếu ta giữ lại những tầng trước đó của mô hình, và chỉ huấn luyện tầng mà ta thay đổi để tránh "làm hỏng" những tầng tích chập? Muốn giữ lại các thông số của mô hình cũ, ta cần phải \textbf{freeze} tất các lớp, sau đó thay thế những lớp ta muốn huấn luyện bằng một lớp mới. Cụ thể, nếu ta muốn giữ lại tất cả các lớp trước trừ lớp cuối cùng, thì bước khởi tạo mô hình trước khi huấn luyện cần phải làm như sau:
 \begin{lstlisting}
 alexnet = models.alexnet(pretrained=True)
 
@@ -882,15 +882,21 @@ Ta thấy rằng, với những lần thử nghiệm có dữ liệu đầu vào
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{thebibliography}{80}
 
+    \bibitem{elistevens} Eli Stevens, Luca Antiga, Thomas Viehmann and Foreword by Soumith Chintala, Deep Learning with PyTorch, Manning Publications, New York (2020).
+
     \bibitem{floyhub} FloyHub, A Beginner’s Guide on Recurrent Neural Networks with PyTorch, \href{https://bit.ly/3n5RpvV}{https://bit.ly/3n5RpvV} (2019).
     
     \bibitem{learnopencv} Learn OpenCV, Understanding AlexNet, \href{https://bit.ly/2P5ZxA1}{https://bit.ly/2P5ZxA1} (2018).
+
+    \bibitem{pytorch} PyTorch, AlexNet, \href{https://bit.ly/3sCwDF6}{https://bit.ly/3sCwDF6} (2017).
     
     \bibitem{pytorch} PyTorch, Finetuning Torchvision Models, \href{https://bit.ly/3grJCY6}{https://bit.ly/3grJCY6} (2017).
     
-    \bibitem{pytorch} PyTorch, Transfer Learning for Computer Vision Tutorial, \href{https://bit.ly/32tHVkH}{https://bit.ly/32tHVkH} (2017).
-
+    \bibitem{pytorch} PyTorch, GoogLeNet, \href{https://bit.ly/3tBXym7}{https://bit.ly/3tBXym7} (2017).
+    
     \bibitem{pytorch} PyTorch, torchvision.models, \href{https://bit.ly/3v3aFgg}{https://bit.ly/3v3aFgg} (2017).
+    
+    \bibitem{pytorch} PyTorch, Transfer Learning for Computer Vision Tutorial, \href{https://bit.ly/32tHVkH}{https://bit.ly/32tHVkH} (2017).
     
     \bibitem{dennismadsen} YouTube - Dennis Madsen, PyTorch - Torch vision for pretrained models (AlexNet),\\\href{https://youtu.be/15zlr2vJqKc}{https://youtu.be/15zlr2vJqKc} (2020).
     
