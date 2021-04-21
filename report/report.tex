@@ -225,7 +225,7 @@ FC-3 & $(2048 \times 2 + 1)\times 1000 = 4,097,000$ & $62,378,344$ \\ \hline
 \subsection{Bài 3}\label{bai3}
 Tập dữ liệu bao gồm 101 ảnh (định dạng \texttt{.jpg}) thuộc 101 lớp khác nhau được chúng em chọn ngẫu nhiên trong 1000 lớp của tập dữ liệu ImageNet.\\
 Để thuận tiện cho việc lập trình, chúng em sử dụng nhãn của ảnh đề đặt tên cho ảnh. Tức là mỗi tấm ảnh trong tập dữ liệu sẽ có định dạng tên \texttt{label.jpg}.\\
-Ba mạng nơ-ron được đưa ra thử nghiệm là: \textbf{AlexNet}, \textbf{GoogleNet} và \textbf{ResNet}.
+Ba mạng nơ-ron được đưa ra thử nghiệm là: \textbf{AlexNet}, \textbf{GoogLeNet} và \textbf{ResNet}.
 
 \subsubsection{Mạng AlexNet}
 Đầu tiên, ta cần phải tải các thư viện cần thiết về.
@@ -394,7 +394,7 @@ Kiểm tra một vài bức ảnh, ta thấy mô hình của ta nhận diện gi
 
 \noindent
 Dẫu vậy, ta vẫn thấy tỷ lệ lỗi vẫn khá cao và vẫn còn bị nhiễu bởi các chi tiết xung quanh vì mô hình này ra đời đã lâu. Ta mong sẽ có kết quả tốt hơn khi thử nghiệm với các mô hình mới hơn.
-\subsubsection{Mạng GoogleNet và ResNet}
+\subsubsection{Mạng GoogLeNet và ResNet}
 Quá trình cũng không khác gì so với mạng AlexNet.
 \begin{lstlisting}
 googlenet = models.googlenet(pretrained=True)
@@ -446,19 +446,19 @@ Từ đó, ta có bảng so sánh tỷ lệ lỗi top-1 và top-5 của 3 mô h�
 \hline
 \textbf{Mô hình} & \textbf{Top-1} & \textbf{Top-5} \\ \hline
 AlexNet          & $19.80\%$              & $8.91\%$              \\ \hline
-GoogleNet        & $\mathbf{10.89\%}$              & $\mathbf{4.95\%}$              \\ \hline
+GoogLeNet        & $\mathbf{10.89\%}$              & $\mathbf{4.95\%}$              \\ \hline
 ResNet           & $11.88\%$              & $6.93\%$              \\ \hline
 \end{tabular}}
 \end{table}
 
 \noindent
-Dễ thấy rằng, cả 2 mô hình trên đều có sự cải thiện so với mô hình mạng AlexNet. Tỷ lệ lỗi top-1 đã giảm từ $19.8\%$ xuống $10.89\%$ (giảm $19.8/10.89 \approx 1.81$ lần) đối với mạng GoogleNet và $11.88\%$ (giảm $19.8/11.88 \approx 1.67$ lần) đối với mạng ResNet. Tỷ lệ lỗi top-5 đã giảm từ $8.91\%$ xuống $4.95\%$ (giảm $8.91/4.95 \approx 1.8$ lần) đối với mạng GoogleNet và $6.93\%$ (giảm $8.91/6.93 \approx 1.29$ lần) đối với mạng ResNet.\\
-Một điều nữa mà GoogleNet và ResNet cải thiện được nữa là kích thước cũng như là thông số mô hình nhỏ hơn đáng kể cho với AlexNet. Chi tiết tham khảo \href{https://www.mathworks.com/help/deeplearning/ug/pretrained-convolutional-neural-networks.html}{MathWorks - Pretrained Deep Neural Networks}.\\
-Để thấy rõ sự cải thiện của mạng GoogleNet so với Alexnet, ta sẽ kiểm tra lại 2 hình ở mạng AlexNet có sai số khá lớn.
+Dễ thấy rằng, cả 2 mô hình trên đều có sự cải thiện so với mô hình mạng AlexNet. Tỷ lệ lỗi top-1 đã giảm từ $19.8\%$ xuống $10.89\%$ (giảm $19.8/10.89 \approx 1.81$ lần) đối với mạng GoogLeNet và $11.88\%$ (giảm $19.8/11.88 \approx 1.67$ lần) đối với mạng ResNet. Tỷ lệ lỗi top-5 đã giảm từ $8.91\%$ xuống $4.95\%$ (giảm $8.91/4.95 \approx 1.8$ lần) đối với mạng GoogLeNet và $6.93\%$ (giảm $8.91/6.93 \approx 1.29$ lần) đối với mạng ResNet.\\
+Một điều nữa mà GoogLeNet và ResNet cải thiện được nữa là kích thước cũng như là thông số mô hình nhỏ hơn đáng kể cho với AlexNet. Chi tiết tham khảo \href{https://www.mathworks.com/help/deeplearning/ug/pretrained-convolutional-neural-networks.html}{MathWorks - Pretrained Deep Neural Networks}.\\
+Để thấy rõ sự cải thiện của mạng GoogLeNet so với Alexnet, ta sẽ kiểm tra lại 2 hình ở mạng AlexNet có sai số khá lớn.
 \begin{figure}[h!]
 \centering
 \includegraphics[width=15cm]{images/res3.PNG}
-\caption*{Ảnh được phân loại chưa chính xác cao bằng AlexNet được phân loại lại bởi GoogleNet}
+\caption*{Ảnh được phân loại chưa chính xác cao bằng AlexNet được phân loại lại bởi GoogLeNet}
 \end{figure}
 
 \noindent
