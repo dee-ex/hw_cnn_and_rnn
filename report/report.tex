@@ -164,7 +164,10 @@ BỘ MÔN ĐIỀU KHIỂN \& TỰ ĐỘNG
 \newpage
 \tableofcontents
 \newpage
-
+\vspace*{\fill}
+{\centering Trang này được cố ý để trống.\par}
+\vspace{\fill}
+\newpage
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Đề bài}
@@ -453,7 +456,7 @@ ResNet           & $11.88\%$              & $6.93\%$              \\ \hline
 
 \noindent
 Dễ thấy rằng, cả 2 mô hình trên đều có sự cải thiện so với mô hình mạng AlexNet. Tỷ lệ lỗi top-1 đã giảm từ $19.8\%$ xuống $10.89\%$ (giảm $19.8/10.89 \approx 1.81$ lần) đối với mạng GoogLeNet và $11.88\%$ (giảm $19.8/11.88 \approx 1.67$ lần) đối với mạng ResNet. Tỷ lệ lỗi top-5 đã giảm từ $8.91\%$ xuống $4.95\%$ (giảm $8.91/4.95 \approx 1.8$ lần) đối với mạng GoogLeNet và $6.93\%$ (giảm $8.91/6.93 \approx 1.29$ lần) đối với mạng ResNet.\\
-Một điều nữa mà GoogLeNet và ResNet cải thiện được nữa là kích thước cũng như là thông số mô hình nhỏ hơn đáng kể cho với AlexNet. Chi tiết tham khảo \href{https://www.mathworks.com/help/deeplearning/ug/pretrained-convolutional-neural-networks.html}{MathWorks - Pretrained Deep Neural Networks}.\\
+Một điều nữa mà GoogLeNet và ResNet cải thiện được nữa là kích thước cũng như là thông số mô hình nhỏ hơn đáng kể cho với AlexNet. Chi tiết tham khảo \href{https://www.mathworks.com/help/deeplearning/ug/pretrained-convolutional-neural-networks.html}{MathWorks - Pretrained Deep Neural Networks}.\footnote{MathWorks - Pretrained Deep Neural Networks, \href{https://bit.ly/32xmAqs}{https://bit.ly/32xmAqs}}\\
 Để thấy rõ sự cải thiện của mạng GoogLeNet so với Alexnet, ta sẽ kiểm tra lại 2 hình ở mạng AlexNet có sai số khá lớn.
 \begin{figure}[h!]
 \centering
@@ -592,13 +595,13 @@ num_epochs = 30
 trained_model, history = train_and_validate(alexnet, loss_func, optimizer, num_epochs)
 \end{lstlisting}
 \begin{verbatim}
-Epoch : 1, trn_loss: 2.5871, trn_acc: 16.2500%, val_loss : 1.9774, val_acc: 33.3333%, Time: 16.9606s
-Epoch : 2, trn_loss: 2.2365, trn_acc: 17.5000%, val_loss : 2.2949, val_acc: 12.5000%, Time: 16.4911s
-Epoch : 3, trn_loss: 2.3083, trn_acc: 8.7500%, val_loss : 2.2891, val_acc: 25.0000%, Time: 16.6145s
+Epoch : 1, trn_loss: 2.5871, trn_acc: 16.2500%, val_loss : 1.9774, val_acc: 33.3333%
+Epoch : 2, trn_loss: 2.2365, trn_acc: 17.5000%, val_loss : 2.2949, val_acc: 12.5000%
+Epoch : 3, trn_loss: 2.3083, trn_acc: 8.7500%, val_loss : 2.2891, val_acc: 25.0000%
 ...
-Epoch : 28, trn_loss: 2.2534, trn_acc: 16.2500%, val_loss : 2.2473, val_acc: 25.0000%, Time: 16.2459s
-Epoch : 29, trn_loss: 2.2584, trn_acc: 16.2500%, val_loss : 2.2427, val_acc: 25.0000%, Time: 16.1560s
-Epoch : 30, trn_loss: 2.2585, trn_acc: 16.2500%, val_loss : 2.2462, val_acc: 25.0000%, Time: 16.2874s
+Epoch : 28, trn_loss: 2.2534, trn_acc: 16.2500%, val_loss : 2.2473, val_acc: 25.0000%
+Epoch : 29, trn_loss: 2.2584, trn_acc: 16.2500%, val_loss : 2.2427, val_acc: 25.0000%
+Epoch : 30, trn_loss: 2.2585, trn_acc: 16.2500%, val_loss : 2.2462, val_acc: 25.0000%
 \end{verbatim}
 \begin{figure}[h!]
 \centering
@@ -617,15 +620,13 @@ for param in alexnet.parameters():
 \end{lstlisting}
 Và khi ta thực hiện lại bước huấn luyện, may mắn thay, ta được kết quả hàm mất mát giảm như mong đợi.
 \begin{verbatim}
-Epoch : 1, trn_loss: 1.9950, trn_acc: 33.7500%, val_loss : 1.0423, val_acc: 70.8333%, Time: 6.4752s
-Epoch : 2, trn_loss: 0.5381, trn_acc: 85.0000%, val_loss : 0.5710, val_acc: 91.6667%, Time: 6.3596s
-Epoch : 3, trn_loss: 0.2200, trn_acc: 96.2500%, val_loss : 0.4143, val_acc: 95.8333%, Time: 6.4472s
-Epoch : 4, trn_loss: 0.1230, trn_acc: 98.7500%, val_loss : 0.3881, val_acc: 95.8333%, Time: 6.4681s
+Epoch : 1, trn_loss: 1.9950, trn_acc: 33.7500%, val_loss : 1.0423, val_acc: 70.8333%
+Epoch : 2, trn_loss: 0.5381, trn_acc: 85.0000%, val_loss : 0.5710, val_acc: 91.6667%
+Epoch : 3, trn_loss: 0.2200, trn_acc: 96.2500%, val_loss : 0.4143, val_acc: 95.8333%
 ...
-Epoch : 27, trn_loss: 0.0079, trn_acc: 100.0000%, val_loss : 0.3143, val_acc: 95.8333%, Time: 6.2976s
-Epoch : 28, trn_loss: 0.0096, trn_acc: 100.0000%, val_loss : 0.3323, val_acc: 95.8333%, Time: 6.3094s
-Epoch : 29, trn_loss: 0.0119, trn_acc: 100.0000%, val_loss : 0.3013, val_acc: 95.8333%, Time: 6.3837s
-Epoch : 30, trn_loss: 0.0084, trn_acc: 100.0000%, val_loss : 0.2886, val_acc: 95.8333%, Time: 6.4277s
+Epoch : 28, trn_loss: 0.0096, trn_acc: 100.0000%, val_loss : 0.3323, val_acc: 95.8333%
+Epoch : 29, trn_loss: 0.0119, trn_acc: 100.0000%, val_loss : 0.3013, val_acc: 95.8333%
+Epoch : 30, trn_loss: 0.0084, trn_acc: 100.0000%, val_loss : 0.2886, val_acc: 95.8333%
 \end{verbatim}
 
 \begin{figure}[h!]
@@ -699,7 +700,7 @@ Về phần \textbf{thạch anh}, kết quả dự đoán khá bất ngờ khi t
 Nhìn chung, mô hình được huấn luyện có khả năng phân loại một số linh kiện điện tử đơn giản với độ chính xác khá cao, khoảng $\approx 80\%$ trong điều kiện hình ảnh rõ nét. Vẫn còn khá hạn chế với những ảnh bị nhiễu. Dẫu vậy, nếu được huấn luyện với tập dữ liệu tốt hơn, việc tăng độ chính xác là điều hoàn toàn khả thi.
 \newpage
 \subsection{Bài 5}
-Vì mạng nơ-ron hồi tiếp chỉ mới tiếp cận, nên việc triển khai mô hình này chúng em xin phép không đi sâu vào phần giải thích thuật toán.\\
+Vì mục đích bài này là thử nghiệm mô hình mạng nơ-ron hồi tiếp đơn giản, nên việc triển khai mô hình này chúng em xin phép không đi sâu vào phần giải thích thuật toán.\\
 Nhưng trước tiên, để làm khoa học dữ liệu, ta cần phải có dữ liệu. Bước tiền xử lí dữ liệu, bước này không có gì đặc biệt về thuật toán, chỉ đơn giản là chuyển các dữ liệu đầu vào thành các one-hot vector.
 \begin{lstlisting}
 import torch
@@ -879,6 +880,68 @@ t  ->  tarta
 \end{verbatim}
 Ta thấy rằng, với những lần thử nghiệm có dữ liệu đầu vào đã được đưa cho mô hình học thì kết quả nhận được hoàn toàn khớp với những gì chúng ta mong đợi. Tuy nhiên với những dữ liệu đầu vào mà mô hình chưa được học thì kết quả trả ra khá vô nghĩa. Điều này là dễ hiểu vì sự thiếu hụt dữ liệu cho việc huấn luyện mô hình trên, dẫn đến việc mô hình quá khớp, chỉ đang ghi nhớ chứ không thực sự là học.
 
+\newpage
+\vspace*{\fill}
+{\centering Trang này được cố ý để trống.\par}
+\vspace{\fill}
+\newpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Phụ lục - Ảnh màu}
+\begin{figure}[h!]
+\centering
+\includegraphics[width=15cm]{images/res1.PNG}
+\caption*{Những ảnh được mô hình phân loại chính xác cao}
+\end{figure}
+
+\clearpage
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=15cm]{images/res2.PNG}
+\caption*{Những ảnh được mô hình phân loại chưa chính xác cao}
+\end{figure}
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=15cm]{images/res3.PNG}
+\caption*{Ảnh được phân loại chưa chính xác cao bằng AlexNet được phân loại lại bởi GoogLeNet}
+\end{figure}
+
+\clearpage
+
+\begin{figure}[h!]
+\centering
+{{\includegraphics[width=8cm]{images/loss.png} }}
+\qquad
+{{\includegraphics[width=8cm]{images/acc.png} }}
+\caption*{Loss và Accuracy của hai quá trình training và validation}
+\end{figure}
+
+\begin{figure}[h!]
+\centering
+{{\includegraphics[width=8cm]{images/loss1.png} }}
+\qquad
+{{\includegraphics[width=8cm]{images/acc1.png} }}
+\caption*{Loss và Accuracy của hai quá trình training và validation sau khi \textbf{freeze} các tầng phía trước}
+\end{figure}
+
+\clearpage
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=15cm]{images/result1.PNG}
+\caption*{Những linh kiện được mô hình phân loại chính xác cao}
+\end{figure}
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=15cm]{images/result2.PNG}
+\caption*{Những linh kiện được mô hình phân loại chưa chính xác cao}
+\end{figure}
+
+\clearpage
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{thebibliography}{80}
 
@@ -903,4 +966,3 @@ Ta thấy rằng, với những lần thử nghiệm có dữ liệu đầu vào
     \bibitem{dennismadsen} YouTube - Dennis Madsen, PyTorch - The Basics of Transfer Learning with TorchVision and AlexNet, \href{https://youtu.be/8etkVC93yU4}{https://youtu.be/8etkVC93yU4} (2020).
 \end{thebibliography}
 \end{document}
-
