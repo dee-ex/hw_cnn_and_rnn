@@ -16,7 +16,7 @@
 \usepackage[lined,boxed,commentsnumbered]{algorithm2e}
 \usepackage{enumerate}
 \usepackage{color}
-\usepackage{graphicx}                           
+\usepackage{graphicx}             
 % Standard graphics package
 \usepackage{listings}
 \lstset{frame=tb,
@@ -52,7 +52,7 @@
 \usepackage[unicode]{hyperref}
 %can file puenc.def trong thu muc goc de option [unicode] tao ra bookmark bang tieng Viet
 \hypersetup{urlcolor=blue,linkcolor=black,citecolor=black,colorlinks=true} 
-%\usepackage{pstcol}                                
+%\usepackage{pstcol}                
 % PSTricks with the standard color package
 
 \newtheorem{theorem}{{\bf Theorem}}
@@ -72,24 +72,23 @@
     \put(0,-8){\includegraphics[width=8mm, height=8mm]{hcmut.png}}
     %\put(0,-8){\epsfig{width=10mm,figure=hcmut.eps}}
    \end{picture}&
-    %\includegraphics[width=8mm, height=8mm]{hcmut.png} & %
-    \begin{tabular}{l}
-        \textbf{\bf \ttfamily Trường Đại học Bách Khoa - Đại học Quốc gia TP.HCM}\\
-        \textbf{\bf \ttfamily Bộ môn Điều khiển \& Tự động}
-    \end{tabular}   
+  %\includegraphics[width=8mm, height=8mm]{hcmut.png} & %
+  \begin{tabular}{l}
+    \textbf{\bf \ttfamily Trường Đại học Bách Khoa - Đại học Quốc gia TP.HCM}\\
+    \textbf{\bf \ttfamily Bộ môn Điều khiển \& Tự động}
+  \end{tabular}   
  \end{tabular}
 }
 \fancyhead[R]{
-    \begin{tabular}{l}
-        \tiny \bf \\
-        \tiny \bf 
-    \end{tabular}  }
+  \begin{tabular}{l}
+    \tiny \bf \\
+    \tiny \bf 
+  \end{tabular}  }
 \fancyfoot{} % clear all footer fields
 \fancyfoot[L]{\scriptsize \ttfamily Bài tập - Mạng Nơ-ron Tích chập \& Hồi tiếp, 04/2021}
 \fancyfoot[R]{\scriptsize \ttfamily {\thepage}/\pageref{LastPage}}
 \renewcommand{\headrulewidth}{0.3pt}
 \renewcommand{\footrulewidth}{0.3pt}
-
 
 %%%
 \setcounter{secnumdepth}{4}
@@ -165,7 +164,7 @@ BỘ MÔN ĐIỀU KHIỂN \& TỰ ĐỘNG
 \tableofcontents
 \newpage
 \vspace*{\fill}
-{\centering Trang này được cố ý để trống.\par}
+{\centering \textit{Trang này được cố ý để trống.}\par}
 \vspace{\fill}
 \newpage
 
@@ -179,16 +178,25 @@ BỘ MÔN ĐIỀU KHIỂN \& TỰ ĐỘNG
 \subsection{Bài 5} Thử nghiệm mô hình mạng nơ-ron hồi tiếp với 3 dữ liệu huấn luyện là:
 \begin{table}[!h]
 \centering
+{\renewcommand{\arraystretch}{1.8}
 \begin{tabular}{|c|c|}
 \hline
 \textbf{dữ liệu} & \textbf{nhãn} \\ \hline
 "h"              & "hello"       \\ \hline
 "g"              & "green"       \\ \hline
 "s"              & "start"       \\ \hline
-\end{tabular}
+\end{tabular}}
 \end{table}
 \section{Về phần lập trình}
-Chúng em sử dụng ngôn ngữ Python với sự hỗ trợ của thư viện PyTorch. Toàn bộ source code cũng như dữ liệu cho bài làm của chúng em có thể tìm thấy tại \href{https://github.com/dee-ex/hw\_cnn\_and\_rnn}{https://github.com/dee-ex/hw\_cnn\_and\_rnn}.
+Chúng em sử dụng ngôn ngữ Python với sự hỗ trợ chính của thư viện PyTorch. Để cài đặt những công cụ này, có thể theo đường dẫn bên dưới:
+\begin{itemize}
+    \item Python: \href{https://www.python.org/downloads/}{https://www.python.org/downloads/}
+    \item PyTorch \href{https://pytorch.org/get-started/locally/}{https://pytorch.org/get-started/locally/}
+\end{itemize}
+Bên cạnh đó, toàn bộ source code cũng như dữ liệu cho bài làm của nhóm có thể tìm thấy tại:
+\begin{itemize}
+    \item Github: \href{https://github.com/dee-ex/hw\_cnn\_and\_rnn}{https://github.com/dee-ex/hw\_cnn\_and\_rnn}
+\end{itemize}
 \newpage
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -202,15 +210,23 @@ Việc chia sẻ trọng số là để cho bộ lọc không chỉ có khả n�
 \begin{figure}[h!]
 \centering
 \includegraphics[width=17cm]{images/alexnet.png}
-\caption*{Kiến trúc mạng AlexNet}
+\caption{Kiến trúc mạng AlexNet}
 \end{figure}
 
 \noindent
-Từ đây, ta có thể tính toán số thông số (\textit{weights} $+$ \textit{biases}) của mỗi tầng như sau:
+Số thông số của một tầng tích chập có thể được tính như sau:
+\begin{align*}
+    \text{number\_of\_parameters} = \left(\text{kernel\_size}\times \text{kernel\_size} \times \text{depth} + \underbrace{1}_\text{bias}\right)\times \text{number\_of\_kernels}
+\end{align*}
+Còn với số thông số của một tầng dày thì được tính như sau:
+\begin{align*}
+    \text{number\_of\_parameters} = \left(\text{number\_of\_inputs} + \underbrace{1}_\text{bias}\right) \times \text{number\_of\_outputs}
+\end{align*}
+Từ đây, ta có thể tính toán số thông số (\textit{weights} $+$ \textit{biases}) của mỗi tầng như bảng bưới đây:
 
 \begin{table}[!h]
 \centering
-{\renewcommand{\arraystretch}{1.8}
+{\renewcommand{\arraystretch}{1.55}
 \begin{tabular}{|c|l|l|}
 \hline
 \textbf{Tầng} & \multicolumn{1}{c|}{\textbf{Số thông số}} & \multicolumn{1}{c|}{\textbf{Tổng số thông số}}\\ \hline
@@ -225,13 +241,17 @@ FC-3 & $(2048 \times 2 + 1)\times 1000 = 4,097,000$ & $62,378,344$ \\ \hline
 \end{tabular}} \quad
 \end{table}
 
-\subsection{Bài 3}\label{bai3}
-Tập dữ liệu bao gồm 101 ảnh (định dạng \texttt{.jpg}) thuộc 101 lớp khác nhau được chúng em chọn ngẫu nhiên trong 1000 lớp của tập dữ liệu ImageNet.\\
-Để thuận tiện cho việc lập trình, chúng em sử dụng nhãn của ảnh đề đặt tên cho ảnh. Tức là mỗi tấm ảnh trong tập dữ liệu sẽ có định dạng tên \texttt{label.jpg}.\\
-Ba mạng nơ-ron được đưa ra thử nghiệm là: \textbf{AlexNet}, \textbf{GoogLeNet} và \textbf{ResNet}.
+\noindent
+Vậy, số thông số của mạng AlexNet mà ta tính được là $62,378,344$.
 
-\subsubsection{Mạng AlexNet}
-Đầu tiên, ta cần phải tải các thư viện cần thiết về.
+\subsection{Bài 3}\label{bai3}
+
+\subsubsection{Mô tả}
+Tập dữ liệu bao gồm 101 ảnh (định dạng \texttt{.jpg}) thuộc 101 lớp khác nhau được chúng em chọn ngẫu nhiên trong 1000 lớp của tập dữ liệu ImageNet. Để thuận tiện cho việc lập trình, nhóm sử dụng nhãn của ảnh đề đặt tên cho ảnh. Tức là mỗi tấm ảnh trong tập dữ liệu sẽ có định dạng tên \texttt{label.jpg}.\\
+Ba mạng nơ-ron được nhóm chọn lựa đưa ra thử nghiệm là: \textbf{AlexNet}, \textbf{GoogLeNet} và \textbf{ResNet}.
+
+\subsubsection{Cài đặt}
+Đầu tiên, ta cần phải tải các thư viện cần thiết về và kiểm tra
 \begin{lstlisting}
 from torchvision import transforms
 from torchvision import models
@@ -239,7 +259,22 @@ import torch
 
 from PIL import Image
 import os
+
+import sys
+
+miss = []
+
+for module in ["torchvision", "torch", "PIL", "os"]:
+  if module not in sys.modules:
+    miss.append(module)
+  
+print("Setup successfully" if not len(miss) else "Not imported yet: " + str(miss))
 \end{lstlisting}
+Quá trình cài đặt đã thành công, ta chuyển qua bước tiền xử lí.
+\begin{verbatim}
+Setup successfully
+\end{verbatim}
+\subsubsection{Tiền xử lí}
 Ta cần đọc được tên các ảnh, để từ đó trích xuất nhãn cũng như đọc ảnh cho việc thử nghiệm với mô hình.
 \begin{lstlisting}
 filenames = os.listdir("./images")
@@ -249,7 +284,7 @@ print(filenames[:3])
 \begin{verbatim}
 ["volcano.jpg", "toaster.jpg", "forklift.jpg"]    
 \end{verbatim}
-Từ những tên file như vậy, ta có thể trích xuất label cũng như đọc ảnh.
+Từ những tên file như vậy, ta có thể trích xuất nhãn cũng như đọc ảnh.
 \begin{lstlisting}
 labels = [fname.split(".")[0] for fname in filenames]
 imgs = [Image.open("./images/" + fname) for fname in filenames]
@@ -281,6 +316,7 @@ print(transformed_imgs.shape)
 torch.Size([101, 3, 224, 224])
 \end{verbatim}
 Vậy là bước tiền xử lí của chúng ta đã xong, bây giờ chúng sẽ đến bước tải mô hình về và thử nghiệm.
+\subsubsection{Mạng AlexNet}
 \begin{lstlisting}
 alexnet = models.alexnet(pretrained=True)
 print(alexnet)
@@ -333,7 +369,7 @@ tensor([[1.1555e-11, 1.0505e-07, 1.5457e-11, 1.5857e-11, 2.4310e-12],
 \end{verbatim}
 
 \noindent
-Để ý rằng, đầu ra mạng AlexNet của Pytorch không phải là một tầng softmax, do đó chúng ta cần thêm một bước tính softmax sau khi nhận được đầu ra.\\
+Để ý rằng, đầu ra mạng AlexNet của Pytorch không phải là một tầng softmax mà là một tầng tuyến tính, do đó chúng ta cần thêm một bước tính softmax sau khi nhận được đầu ra.\\
 Chúng ta cần tìm \texttt{argmax}, vậy nên ta có thể sắp xếp lại vector đầu ra theo giá trị giảm dần để dễ dàng xử lí.
 \begin{lstlisting}
 _, indices = torch.sort(softout, descending=True)
@@ -374,25 +410,26 @@ print("top-5 error rate", 100 * (1 - count_top5/N))
 top-1 error rate 19.8019801980198
 top-5 error rate 8.910891089108908
 \end{verbatim}
+Với 101 tấm ảnh thử nghiệm, tỷ lệ lỗi top-1 là $19.8\%$, thấp hơn so với kết quả của bài báo gốc $17.7\%$. Còn tỷ lệ lỗi top-5 là $8.9\%$, cũng thấp hơn so với kết quả của bài báo gốc $8.1\%$.\\
+Tỷ lệ lỗi ở top-1 cũng cao hơn tỷ lệ lỗi ở top-5, cụ thể là hơn $10.9\%$, điều này là hiển nhiên vì ở trong top-1 thì chắc chắn ở trong top-5, nhưng ngược lại thì chưa chắc.
+
+\clearpage
 
 \noindent
-Với 101 tấm ảnh thử nghiệm, tỷ lệ lỗi top-1 là $19.8\%$, thấp hơn so với kết quả của bài báo gốc $17.7\%$. Còn tỷ lệ lỗi top-5 là $8.9\%$, cũng thấp hơn so với kết quả của bài báo gốc $8.1\%$.\\
-Tỷ lệ lỗi ở top-1 cũng cao hơn tỷ lệ lỗi ở top-5, cụ thể là hơn $10.9\%$, điều này là hiển nhiên vì ở trong top-1 thì chắc chắn ở trong top-5, nhưng ngược lại thì chưa chắc.\\
 Kiểm tra một vài bức ảnh, ta thấy mô hình của ta nhận diện giống như bộ não của chúng ta hoạt động khi sự nhầm lần là nhầm lẫn giữa những thứ tương tự.
 \begin{figure}[h!]
 \centering
-\includegraphics[width=15cm]{images/res1.PNG}
-\caption*{Những ảnh được mô hình phân loại chính xác cao}
+\includegraphics[width=13.3cm]{images/res1.PNG}
+\caption{Những ảnh được mô hình phân loại chính xác cao}
 \end{figure}
 
 \noindent
 Ở tấm hình cái dĩa, hoa văn của nó đã làm cho mô hình dự đoán sai ra những nhãn khác, điều này khá khó tránh khỏi khi những đặc trưng này nổi bật hơn cả so với những đặc trưng khác của cái dĩa.
-\newpage
 
 \begin{figure}[h!]
 \centering
-\includegraphics[width=15cm]{images/res2.PNG}
-\caption*{Những ảnh được mô hình phân loại chưa chính xác cao}
+\includegraphics[width=13.3cm]{images/res2.PNG}
+\caption{Những ảnh được mô hình phân loại chưa chính xác cao}
 \end{figure}
 
 \noindent
@@ -441,7 +478,8 @@ print("top-5 error rate", 100 * (1 - count_top5/N))
 top-1 error rate 11.881188118811881
 top-5 error rate 6.930693069306926
 \end{verbatim}
-Từ đó, ta có bảng so sánh tỷ lệ lỗi top-1 và top-5 của 3 mô hình trên như sau:
+\subsubsection{So sánh AlexNet với GoogLeNet và ResNet}
+Ta có bảng so sánh tỷ lệ lỗi top-1 và top-5 của 3 mô hình trên như sau:
 \begin{table}[!h]
 \centering
 {\renewcommand{\arraystretch}{1}
@@ -456,20 +494,27 @@ ResNet           & $11.88\%$              & $6.93\%$              \\ \hline
 
 \noindent
 Dễ thấy rằng, cả 2 mô hình trên đều có sự cải thiện so với mô hình mạng AlexNet. Tỷ lệ lỗi top-1 đã giảm từ $19.8\%$ xuống $10.89\%$ (giảm $19.8/10.89 \approx 1.81$ lần) đối với mạng GoogLeNet và $11.88\%$ (giảm $19.8/11.88 \approx 1.67$ lần) đối với mạng ResNet. Tỷ lệ lỗi top-5 đã giảm từ $8.91\%$ xuống $4.95\%$ (giảm $8.91/4.95 \approx 1.8$ lần) đối với mạng GoogLeNet và $6.93\%$ (giảm $8.91/6.93 \approx 1.29$ lần) đối với mạng ResNet.\\
-Một điều nữa mà GoogLeNet và ResNet cải thiện được nữa là kích thước cũng như là thông số mô hình nhỏ hơn đáng kể cho với AlexNet. Chi tiết tham khảo \href{https://www.mathworks.com/help/deeplearning/ug/pretrained-convolutional-neural-networks.html}{MathWorks - Pretrained Deep Neural Networks}.\footnote{MathWorks - Pretrained Deep Neural Networks, \href{https://bit.ly/32xmAqs}{https://bit.ly/32xmAqs}}\\
+Một điều nữa mà GoogLeNet và ResNet cải thiện được nữa là kích thước cũng như là thông số mô hình nhỏ hơn đáng kể cho với AlexNet. Chi tiết tham khảo \href{https://www.mathworks.com/help/deeplearning/ug/pretrained-convolutional-neural-networks.html}{MathWorks - Pretrained Deep Neural Networks}.\footnote{MathWorks - Pretrained Deep Neural Networks, \href{https://bit.ly/32xmAqs}{https://bit.ly/32xmAqs}}
+
+\newpage
+
+\noindent
 Để thấy rõ sự cải thiện của mạng GoogLeNet so với Alexnet, ta sẽ kiểm tra lại 2 hình ở mạng AlexNet có sai số khá lớn.
 \begin{figure}[h!]
 \centering
 \includegraphics[width=15cm]{images/res3.PNG}
-\caption*{Ảnh được phân loại chưa chính xác cao bằng AlexNet được phân loại lại bởi GoogLeNet}
+\caption{Ảnh được phân loại chưa chính xác cao bằng AlexNet được phân loại lại bởi GoogLeNet}
 \end{figure}
 
 \noindent
-Nhìn chung, kết quả có khả quan hơn, khi giờ đây ở ảnh có nhãn là \texttt{gasmask} đã lên top-1. Với ảnh có nhãn là \texttt{plate}, tuy chưa lên được top-5, tuy nhiên mô hình cũng đã loại bỏ được nhiễu ở hoa văn xung quanh và tìm được những vật có tính chất tương tự với cái dĩa.
+Nhìn chung, kết quả có khả quan hơn, khi giờ đây ở ảnh có nhãn là \texttt{gasmask} đã lên top-1. Với ảnh có nhãn là \texttt{plate}, tuy chưa lên được top-5, tuy nhiên mô hình cũng đã loại bỏ được nhiễu ở hoa văn xung quanh và tìm được những vật có tính chất tương tự với cái dĩa ở trong không gian bếp.
 
 \subsection{Bài 4}
+\subsubsection{Mô tả}
 Tập dữ liệu về các linh kiện điện tử đơn giản gồm 128 ảnh (định dạng \texttt{.jpg}) thuộc 10 lớp khác nhau (chi tiết trong thư mục \texttt{datasets}). Trong đó số train-validation-test là 80-24-24. Đây là những dữ liệu được chúng em tự tay thu thập. Trong quá trình thực hiện quá trình, có một vài sai xót trong việc xử lí camera nên một vài hình ảnh bị mờ, nhoè, không rõ nét. Tuy vậy, chúng em nhận thấy đây cũng có thể là một thử tách cho mô hình để đánh giá xem mô hình có đủ tốt để vượt qua hay không.\\
-Không giống như \hyperref[bai3]{\textbf{Bài 3}}, ở bài này, ta sẽ thay đổi một vài chi tiết của mô hình ở những tầng cuối cùng để có thể phù hợp với bài toán của chúng ta hơn. Cụ thể là phân loại những thiết bị linh kiện điện tử gần gũi với những sinh viên khoa điện, nhưng lại không có trong tập dữ liệu ImageNet. Vậy nên ta cũng cần phải huấn luyện lại mô hình. Đầu tiên, ta sẽ tạo những thứ cơ bản cho việc tải dữ liệu để huấn luyện và xác thực.
+Không giống như \hyperref[bai3]{\textbf{Bài 3}}, ở bài này, ta sẽ thay đổi một vài chi tiết của mô hình ở những tầng cuối cùng để có thể phù hợp với bài toán của chúng ta hơn. Cụ thể là phân loại những thiết bị linh kiện điện tử gần gũi với những sinh viên khoa điện, nhưng lại không có trong tập dữ liệu ImageNet. Vậy nên ta cũng cần phải huấn luyện lại mô hình.
+\subsubsection{Cài đặt \& Tiền xử lí}
+Đầu tiên, ta sẽ tạo những thứ cơ bản cho việc tải dữ liệu để huấn luyện và xác thực.
 \begin{lstlisting}
 import torch
 import torch.nn as nn
@@ -504,7 +549,8 @@ train_size, valid_size = len(data["train"]), len(data["valid"])
 train_loader = DataLoader(data["train"], batch_size, True)
 valid_loader = DataLoader(data["valid"], batch_size, True)
 \end{lstlisting}
-Tiếp theo, ta sẽ lấy mô hình mạng AlexNet đã được huấn luyện rồi và chỉnh sửa lại một chút ở tầng cuối cùng. Như ở \hyperref[bai3]{\textbf{Bài 3}} ta đã thấy, tầng đầu ra là tầng \textbf{6}, nên ta sẽ thay đổi ở tầng này.
+\subsubsection{Chỉnh sửa \& Huận luyện lại mô hình}
+Tiếp theo, ta sẽ lấy mô hình mạng AlexNet đã được huấn luyện rồi và chỉnh sửa lại một chút ở tầng cuối cùng. Như ở \hyperref[bai3]{\textbf{Bài 3}} ta đã thấy, tầng đầu ra là tầng \textbf{6}, và ta sẽ thay đổi ở tầng này từ $1000$ đầu ra xuống $10$ đầu ra, phù hợp với bài toán của chúng ta hơn.
 \begin{lstlisting}
 alexnet = models.alexnet(pretrained=True)
 alexnet.classifier[6] = nn.Linear(4096, num_classes)
@@ -513,7 +559,7 @@ alexnet.classifier.add_module("7", nn.LogSoftmax(dim = 1))
 loss_func = nn.NLLLoss()
 optimizer = torch.optim.Adam(alexnet.parameters())
 \end{lstlisting}
-Ở tầng đầu ra của mô hình chúng ta, việc thêm một tầng \texttt{LogSoftmax} sẽ có kết quả tốt hơn khi huấn luyện khi kết hợp với \texttt{NLLLoss}.\footnote{Data Science, \lq What is the advantage of using log softmax instead of softmax\rq, \href{https://bit.ly/3sIU4wV}{https://bit.ly/3sIU4wV}}
+Ở tầng đầu ra của mô hình chúng ta, việc thêm một tầng \texttt{LogSoftmax} sẽ có kết quả tốt hơn khi huấn luyện, đặc biệt là khi kết hợp với \texttt{NLLLoss}.\footnote{Data Science, \lq What is the advantage of using log softmax instead of softmax\rq, \href{https://bit.ly/3sIU4wV}{https://bit.ly/3sIU4wV}}
 \begin{lstlisting}
 def train_and_validate(model, loss_criterion, optimizer, epochs=25):
   start = time.time()
@@ -597,9 +643,7 @@ trained_model, history = train_and_validate(alexnet, loss_func, optimizer, num_e
 \begin{verbatim}
 Epoch : 1, trn_loss: 2.5871, trn_acc: 16.2500%, val_loss : 1.9774, val_acc: 33.3333%
 Epoch : 2, trn_loss: 2.2365, trn_acc: 17.5000%, val_loss : 2.2949, val_acc: 12.5000%
-Epoch : 3, trn_loss: 2.3083, trn_acc: 8.7500%, val_loss : 2.2891, val_acc: 25.0000%
 ...
-Epoch : 28, trn_loss: 2.2534, trn_acc: 16.2500%, val_loss : 2.2473, val_acc: 25.0000%
 Epoch : 29, trn_loss: 2.2584, trn_acc: 16.2500%, val_loss : 2.2427, val_acc: 25.0000%
 Epoch : 30, trn_loss: 2.2585, trn_acc: 16.2500%, val_loss : 2.2462, val_acc: 25.0000%
 \end{verbatim}
@@ -608,7 +652,7 @@ Epoch : 30, trn_loss: 2.2585, trn_acc: 16.2500%, val_loss : 2.2462, val_acc: 25.
 {{\includegraphics[width=8cm]{images/loss.png} }}
 \qquad
 {{\includegraphics[width=8cm]{images/acc.png} }}
-\caption*{Loss và Accuracy của hai quá trình training và validation}
+\caption{Loss và Accuracy của hai quá trình training và validation}
 \end{figure}
 Kết quả có vẻ không như ta mong muốn, khi loss cao và không có dấu hiệu giảm, accuracy thì lại quá thấp ($< 50\%$) và cũng không có dấu hiệu tăng. Có lẽ ta không cần phải đem mô hình này đi thử nghiệm vì không lí nào mô hình lại có thể có thể dự đoán tốt với kết quả như thế này.\\
 Sẽ ra sao nếu ta giữ lại những tầng trước đó của mô hình, và chỉ huấn luyện tầng mà ta thay đổi để tránh "làm hỏng" những tầng tích chập? Muốn giữ lại các thông số của mô hình cũ, ta cần phải \textbf{freeze} tất các lớp, sau đó thay thế những lớp ta muốn huấn luyện bằng một lớp mới. Cụ thể, nếu ta muốn giữ lại tất cả các lớp trước trừ lớp cuối cùng, thì bước khởi tạo mô hình trước khi huấn luyện cần phải làm như sau:
@@ -622,9 +666,7 @@ Và khi ta thực hiện lại bước huấn luyện, may mắn thay, ta đư�
 \begin{verbatim}
 Epoch : 1, trn_loss: 1.9950, trn_acc: 33.7500%, val_loss : 1.0423, val_acc: 70.8333%
 Epoch : 2, trn_loss: 0.5381, trn_acc: 85.0000%, val_loss : 0.5710, val_acc: 91.6667%
-Epoch : 3, trn_loss: 0.2200, trn_acc: 96.2500%, val_loss : 0.4143, val_acc: 95.8333%
 ...
-Epoch : 28, trn_loss: 0.0096, trn_acc: 100.0000%, val_loss : 0.3323, val_acc: 95.8333%
 Epoch : 29, trn_loss: 0.0119, trn_acc: 100.0000%, val_loss : 0.3013, val_acc: 95.8333%
 Epoch : 30, trn_loss: 0.0084, trn_acc: 100.0000%, val_loss : 0.2886, val_acc: 95.8333%
 \end{verbatim}
@@ -634,7 +676,7 @@ Epoch : 30, trn_loss: 0.0084, trn_acc: 100.0000%, val_loss : 0.2886, val_acc: 95
 {{\includegraphics[width=8cm]{images/loss1.png} }}
 \qquad
 {{\includegraphics[width=8cm]{images/acc1.png} }}
-\caption*{Loss và Accuracy của hai quá trình training và validation sau khi \textbf{freeze} các tầng phía trước}
+\caption{Loss và Accuracy của hai quá trình training và validation sau khi \textbf{freeze} các tầng phía trước}
 \end{figure}
 
 \noindent
@@ -676,31 +718,32 @@ top-1 error rate 20.833333333333336
 top-3 error rate 8.333333333333337
 \end{verbatim}
 Không quá tệ, đặc biệt là khi các linh kiện mà ta phân loại cũng có sự tương đồng khá lớn giữa các linh kiện. Ta sẽ thấy rõ hơn điều này bằng cách xem chi tiết một vài kết quả.
-\newpage
 \begin{figure}[h!]
 \centering
 \includegraphics[width=15cm]{images/result1.PNG}
-\caption*{Những linh kiện được mô hình phân loại chính xác cao}
+\caption{Những linh kiện được mô hình phân loại chính xác cao}
 \end{figure}
 
 \noindent
 Dễ thấy rằng, những hình này có hình khối và đặc điểm dễ dàng nhận dạng. Ví dụ như \textbf{ic} thì nhiều chân, \textbf{relay} thì khối như \textbf{ic}, nhưng lại ít chân hơn, còn \textbf{transistor} thì cũng ít chân như \textbf{relay} nhưng lại có kích thước nhỏ.
+\newpage
 \begin{figure}[h!]
 \centering
 \includegraphics[width=15cm]{images/result2.PNG}
-\caption*{Những linh kiện được mô hình phân loại chưa chính xác cao}
+\caption{Những linh kiện được mô hình phân loại chưa chính xác cao}
 \end{figure}
 
 \noindent
 Hình ảnh \textbf{inductor} này thực sự khó với mô hình, vì dạng này chưa được huấn luyện cho mô hình, nên nhầm lẫn là điều hết sức bình thường, càng dễ hiểu hơn khi mô hình dữ đoán với những thứ khá tương đồng với \textbf{inductor} dạng như thế này là \textbf{transistor} hay là \textbf{thạch anh}.\\
 Với hình ảnh \textbf{capacitor} không thể lọt vào top-3, ta thấy rằng ảnh này bị chụp thiếu chính xác, gây ra nhiễu lớn, cũng như bản thân con tụ cũng có chân ngắn, khó phân biệt so với những con tụ bình thường được chụp một cách rõ nét.\\
-Về phần \textbf{thạch anh}, kết quả dự đoán khá bất ngờ khi top-3 lại có \textbf{relay} và \textbf{ic} vì cơ bản \textbf{thạch anh} và hai linh kiện kia không có mấy điểm chung. Nếu kết quả là \textbf{transistor} hoặc \textbf{mica capacitor} hay là \textbf{resistor} có lẽ sẻ dễ hiểu hơn.\\
+Về phần \textbf{thạch anh}, kết quả dự đoán khá bất ngờ khi top-3 lại có \textbf{relay} và \textbf{ic} vì cơ bản \textbf{thạch anh} và hai linh kiện kia không có mấy điểm chung. Nếu kết quả là \textbf{transistor} hoặc \textbf{mica capacitor} hay là \textbf{resistor} có lẽ sẻ dễ hiểu hơn.
 
-\noindent
-Nhìn chung, mô hình được huấn luyện có khả năng phân loại một số linh kiện điện tử đơn giản với độ chính xác khá cao, khoảng $\approx 80\%$ trong điều kiện hình ảnh rõ nét. Vẫn còn khá hạn chế với những ảnh bị nhiễu. Dẫu vậy, nếu được huấn luyện với tập dữ liệu tốt hơn, việc tăng độ chính xác là điều hoàn toàn khả thi.
-\newpage
+\subsubsection{Kết luận}
+Chỉ với số lượng dữ liệu huấn luyện ít ỏi ($80$ ảnh), bằng cách tận dụng học chuyển giao, ta đã có một mô hình có khả năng phân loại một số linh kiện điện tử đơn giản với độ chính xác khá cao, khoảng $\approx 80\%$ trong điều kiện hình ảnh rõ nét. Từ đó, ta thấy được lợi ích của việc tận dụng những mô hình đã được huấn luyện tốt. Tuy vẫn còn khá hạn chế với những ảnh bị nhiễu, nếu được huấn luyện với tập dữ liệu tốt hơn, việc tăng độ chính xác là điều hoàn toàn khả thi.
+
 \subsection{Bài 5}
-Vì mục đích bài này là thử nghiệm mô hình mạng nơ-ron hồi tiếp đơn giản, nên việc triển khai mô hình này chúng em xin phép không đi sâu vào phần giải thích thuật toán.\\
+Vì mục đích bài này là thử nghiệm mô hình mạng nơ-ron hồi tiếp đơn giản, nên việc triển khai mô hình này chúng em xin phép không đi sâu vào phần giải thích thuật toán.
+\subsubsection{Cài đặt \& Tiền xử lí}
 Nhưng trước tiên, để làm khoa học dữ liệu, ta cần phải có dữ liệu. Bước tiền xử lí dữ liệu, bước này không có gì đặc biệt về thuật toán, chỉ đơn giản là chuyển các dữ liệu đầu vào thành các one-hot vector.
 \begin{lstlisting}
 import torch
@@ -772,6 +815,7 @@ tensor([[[0., 0., 0., 0., 0., 1., 0., 0., 0., 0.],
          [0., 0., 1., 0., 0., 0., 0., 0., 0., 0.],
          [0., 0., 0., 0., 0., 0., 0., 1., 0., 0.]]])
 \end{verbatim}
+\subsubsection{Xây dựng mô hình \& Thử nghiệm}
 Sau khi có được dữ liệu, ta sẽ tiến hành xây dựng mô hình.
 \begin{lstlisting}
 class RNN(nn.Module):
@@ -878,34 +922,32 @@ s  ->  start
 e  ->  eello
 t  ->  tarta
 \end{verbatim}
+
+\subsubsection{Kết luận}
 Ta thấy rằng, với những lần thử nghiệm có dữ liệu đầu vào đã được đưa cho mô hình học thì kết quả nhận được hoàn toàn khớp với những gì chúng ta mong đợi. Tuy nhiên với những dữ liệu đầu vào mà mô hình chưa được học thì kết quả trả ra khá vô nghĩa. Điều này là dễ hiểu vì sự thiếu hụt dữ liệu cho việc huấn luyện mô hình trên, dẫn đến việc mô hình quá khớp, chỉ đang ghi nhớ chứ không thực sự là học.
 
-\newpage
-\vspace*{\fill}
-{\centering Trang này được cố ý để trống.\par}
-\vspace{\fill}
 \newpage
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Phụ lục - Ảnh màu}
 \begin{figure}[h!]
 \centering
-\includegraphics[width=15cm]{images/res1.PNG}
-\caption*{Những ảnh được mô hình phân loại chính xác cao}
+\includegraphics[width=16cm]{images/res1.PNG}
+\caption*{Hình 2: Những ảnh được mô hình phân loại chính xác cao}
 \end{figure}
 
 \clearpage
 
 \begin{figure}[h!]
 \centering
-\includegraphics[width=15cm]{images/res2.PNG}
-\caption*{Những ảnh được mô hình phân loại chưa chính xác cao}
+\includegraphics[width=16cm]{images/res2.PNG}
+\caption*{Hình 3: Những ảnh được mô hình phân loại chưa chính xác cao}
 \end{figure}
 
 \begin{figure}[h!]
 \centering
-\includegraphics[width=15cm]{images/res3.PNG}
-\caption*{Ảnh được phân loại chưa chính xác cao bằng AlexNet được phân loại lại bởi GoogLeNet}
+\includegraphics[width=16cm]{images/res3.PNG}
+\caption*{Hình 4: Ảnh được phân loại chưa chính xác cao bằng AlexNet được phân loại lại bởi GoogLeNet}
 \end{figure}
 
 \clearpage
@@ -915,7 +957,7 @@ Ta thấy rằng, với những lần thử nghiệm có dữ liệu đầu vào
 {{\includegraphics[width=8cm]{images/loss.png} }}
 \qquad
 {{\includegraphics[width=8cm]{images/acc.png} }}
-\caption*{Loss và Accuracy của hai quá trình training và validation}
+\caption*{Hình 5: Loss và Accuracy của hai quá trình training và validation}
 \end{figure}
 
 \begin{figure}[h!]
@@ -923,7 +965,7 @@ Ta thấy rằng, với những lần thử nghiệm có dữ liệu đầu vào
 {{\includegraphics[width=8cm]{images/loss1.png} }}
 \qquad
 {{\includegraphics[width=8cm]{images/acc1.png} }}
-\caption*{Loss và Accuracy của hai quá trình training và validation sau khi \textbf{freeze} các tầng phía trước}
+\caption*{Hình 6: Loss và Accuracy của hai quá trình training và validation sau khi \textbf{freeze} các tầng phía trước}
 \end{figure}
 
 \clearpage
@@ -931,13 +973,13 @@ Ta thấy rằng, với những lần thử nghiệm có dữ liệu đầu vào
 \begin{figure}[h!]
 \centering
 \includegraphics[width=15cm]{images/result1.PNG}
-\caption*{Những linh kiện được mô hình phân loại chính xác cao}
+\caption*{Hình 7: Những linh kiện được mô hình phân loại chính xác cao}
 \end{figure}
 
 \begin{figure}[h!]
 \centering
 \includegraphics[width=15cm]{images/result2.PNG}
-\caption*{Những linh kiện được mô hình phân loại chưa chính xác cao}
+\caption*{Hình 8: Những linh kiện được mô hình phân loại chưa chính xác cao}
 \end{figure}
 
 \clearpage
